@@ -5,6 +5,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     instrument: ObserveInstrument,
   });
-  await app.listen(process.env.PORT ?? 3000);
+
+  const puerto = Number(process.env.PORT) || 3000;
+
+  await app.listen(puerto, '127.0.0.1');
+
+  console.log(
+    `Servidor NestJS disponible en http://localhost:${puerto}`,
+  );
+
 }
 await bootstrap();
